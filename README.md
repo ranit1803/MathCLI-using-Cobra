@@ -39,7 +39,7 @@ mathcli/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/mathcli.git
+git clone https://github.com/ranit1803/mathcli.git
 cd mathcli
 ```
 
