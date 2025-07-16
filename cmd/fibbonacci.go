@@ -20,12 +20,30 @@ var fibbonacciCmd = &cobra.Command{
 	-l is the flag that gets the first 5 numbers from the fibbonacci series
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("fibbonacci called")
+		length,_:= cmd.Flags().GetInt("length")
+		fibbo, err := GoFibbo(length)
+		if err!=nil{
+			fmt.Println(err)
+		} else{
+			fmt.Println(fibbo)
+		}
 	},
 }
 
 func GoFibbo(length int) ([]int , error){
-	
+	if length<0 {
+		return nil, fmt.Errorf("length has to be positive")
+	}
+	fibbo:= make([]int, length)
+
+	if length>0{
+		fibbo[0] = 0
+		fibbo[1] = 1
+	}
+	for i:=2; i<length; i++{
+		fibbo[i] = fibbo[i-1]+fibbo[i-2]
+	}
+	return fibbo,nil
 }
 
 func init() {
